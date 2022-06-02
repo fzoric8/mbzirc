@@ -41,6 +41,10 @@ $slot2_rpy = '0 0 0'
 $slot3_payload = nil
 $slot3_rpy = '0 0 0'
 
+$arm_slot_payload = '0'
+if defined?(arm_slot)
+  $arm_slot_payload = arm_slot
+end
 if defined?(slot0)
   $slot0_payload = slot0
 end
@@ -84,10 +88,10 @@ end
     <name>arm</name>
     <uri>model://<%= $arm_name%></uri>
     <placement_frame>arm_mount_point</placement_frame>
-    <pose relative_to="arm_slot_0">0 0 0 0 0 0</pose>
+    <pose relative_to="arm_slot_<%= $arm_slot_payload%>">0 0 0 0 0 0</pose>
   </include>
-  <joint name="arm_slot_0_joint" type="fixed">
-    <parent>arm_slot_0</parent>
+  <joint name="arm_slot_joint" type="fixed">
+    <parent>arm_slot_<%= $arm_slot_payload%></parent>
     <child>arm::arm_mount_point</child>
   </joint>
   <% end %>
@@ -282,7 +286,7 @@ end
     <pose>0 0 0.22 0 0 0</pose>
     <geometry>
       <box>
-        <size>4 3.3 0.25</size>
+        <size>5 3.3 0.25</size>
       </box>
     </geometry>
   </plugin>
@@ -292,7 +296,7 @@ end
     <pose>0 0 0.8 0 0 0</pose>
     <geometry>
       <box>
-        <size>1.5 2.2 0.25</size>
+        <size>1.5 3.5 0.25</size>
       </box>
     </geometry>
   </plugin>
@@ -302,7 +306,7 @@ end
     <pose>0 -1.35 0.22 0 0 0</pose>
     <geometry>
       <box>
-        <size>5.8 0.58 0.25</size>
+        <size>6.0 0.58 0.25</size>
       </box>
     </geometry>
   </plugin>
@@ -312,7 +316,7 @@ end
     <pose>0 1.35 0.22 0 0 0</pose>
     <geometry>
       <box>
-        <size>5.8 0.58 0.25</size>
+        <size>6.0 0.58 0.25</size>
       </box>
     </geometry>
   </plugin>
@@ -333,7 +337,7 @@ end
       <transparency>0.5</transparency>
       <geometry>
         <box>
-          <size>4 3.3 0.25</size>
+          <size>5 3.3 0.25</size>
         </box>
       </geometry>
       <material>
@@ -347,7 +351,7 @@ end
       <transparency>0.5</transparency>
       <geometry>
         <box>
-          <size>1.5 2.2 0.25</size>
+          <size>1.5 3.5 0.25</size>
         </box>
       </geometry>
       <material>
@@ -361,7 +365,7 @@ end
       <transparency>0.5</transparency>
       <geometry>
         <box>
-          <size>5.8 0.58 0.25</size>
+          <size>6.0 0.58 0.25</size>
         </box>
       </geometry>
       <material>
@@ -375,7 +379,7 @@ end
       <transparency>0.5</transparency>
       <geometry>
         <box>
-          <size>5.8 0.58 0.25</size>
+          <size>6.0 0.58 0.25</size>
         </box>
       </geometry>
       <material>

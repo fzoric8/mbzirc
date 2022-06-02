@@ -1,5 +1,5 @@
 # Ubuntu 20.04 with nvidia-docker2 beta opengl support
-FROM nvidia/opengl:1.0-glvnd-devel-ubuntu20.04
+FROM nvidia/opengl:1.2-glvnd-devel-ubuntu20.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -114,7 +114,7 @@ RUN cd /home/$USERNAME/mbzirc_ws/src \
 
 WORKDIR /home/$USERNAME/mbzirc_ws
 
-COPY . src/mbzric
+COPY . src/mbzirc
 
 ENV IGNITION_VERSION fortress
 
