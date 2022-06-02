@@ -131,7 +131,20 @@ RUN /bin/bash -c 'source /opt/ros/galactic/setup.bash \
 # TODO(jrivero): implement build arg to clean build/ log/ while releasing
 # && rm -fr build/ log/
 
+#Add rviz
+WORKDIR /home/developer
+RUN mkdir -p rviz_ws/src
+WORKDIR /home/developer/rviz_ws/src
+RUN git clone -b galactic --single-branch https://github.com/ros2/rviz.git
+RUN git clone https://github.com/ros2/geometry2.git
+# Fix for issue of overloading cancel
+WORKDIR /home/developer/rviz_ws/geometry2
+RUN git checkout 0.22.0
+WORKDIR rviz_ws 
+RUN "source /opt/ros/galactic/setup.bash; colcon build --merge-install"
+
 RUN /bin/sh -c 'echo ". /opt/ros/galactic/setup.bash" >> ~/.bashrc' \
+ && /bin/sh -c 'echo ". ~/rviz_ws/install/setup.sh" >> ~/.bashrc' \
  && /bin/sh -c 'echo ". ~/mbzirc_ws/install/setup.sh" >> ~/.bashrc'
 
 # Copy entry point script, and set the entrypoint
