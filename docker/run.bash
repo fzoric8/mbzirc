@@ -96,7 +96,6 @@ docker run -it \
   --volume="/tmp/.X11-unix:/tmp/.X11-unix" \
   --volume="/dev:/dev" \
   -v "/etc/localtime:/etc/localtime:ro" \
-  -v "/dev:/dev" \
   --network host \
   --privileged \
   --security-opt seccomp=unconfined \
