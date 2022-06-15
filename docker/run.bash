@@ -93,11 +93,12 @@ fi
 docker run -it \
   --env="DISPLAY=$DISPLAY" \
   --env="QT_X11_NO_MITSHM=1" \
-  --volume="/tmp/.X11-unix:/tmp/.X11-unix" \
+  --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
   --volume="/dev:/dev" \
-  -v "/etc/localtime:/etc/localtime:ro" \
-  --network host \
+  --volume="/etc/localtime:/etc/localtime:ro" \
+  --net=host \
   --privileged \
+  --gpus all \
   --security-opt seccomp=unconfined \
-  --name mbzirc_sim_cont 
-  mbzirc_sim:latest 
+  --name mbzirc_sim_cont \
+  mbzirc_sim:latest

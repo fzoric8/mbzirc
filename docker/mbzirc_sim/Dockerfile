@@ -132,16 +132,16 @@ RUN /bin/bash -c 'source /opt/ros/galactic/setup.bash \
 # && rm -fr build/ log/
 
 #Add rviz
-WORKDIR /home/developer
-RUN mkdir -p rviz_ws/src
-WORKDIR /home/developer/rviz_ws/src
-RUN git clone -b galactic --single-branch https://github.com/ros2/rviz.git
-RUN git clone https://github.com/ros2/geometry2.git
+# WORKDIR /home/developer
+# RUN mkdir -p rviz_ws/src
+# WORKDIR /home/developer/rviz_ws/src
+# RUN git clone -b galactic --single-branch https://github.com/ros2/rviz.git
+# RUN git clone https://github.com/ros2/geometry2.git
 # Fix for issue of overloading cancel
-WORKDIR /home/developer/rviz_ws/geometry2
-RUN git checkout 0.22.0
-WORKDIR rviz_ws 
-RUN "source /opt/ros/galactic/setup.bash; colcon build --merge-install"
+# WORKDIR /home/developer/rviz_ws/src/geometry2
+# RUN git checkout 0.22.0 
+# WORKDIR /home/developer/rviz_ws 
+# RUN bash -c "source /opt/ros/galactic/setup.bash; colcon build --merge-install" # tf2_py fails during build
 
 RUN /bin/sh -c 'echo ". /opt/ros/galactic/setup.bash" >> ~/.bashrc' \
  && /bin/sh -c 'echo ". ~/rviz_ws/install/setup.sh" >> ~/.bashrc' \
@@ -150,3 +150,5 @@ RUN /bin/sh -c 'echo ". /opt/ros/galactic/setup.bash" >> ~/.bashrc' \
 # Copy entry point script, and set the entrypoint
 # COPY mbzirc_sim/run_sim.bash ./
 # ENTRYPOINT ["./run_sim.bash"]
+
+CMD ["/bin/bash"]
