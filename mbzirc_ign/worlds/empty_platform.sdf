@@ -177,20 +177,77 @@
     </plugin-->
     </include>
 
-    <!--include>
+    <include>
       <name>large_crate_d</name>
       <pose relative_to="base_station">0.27 1.73 0.779 0 0 1.3</pose>
       <uri>
         https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Large Crate
       </uri>
-      <plugin filename="ignition-gazebo-detachable-joint-system" name="ignition::gazebo::systems::DetachableJoint">
+      <!--plugin filename="ignition-gazebo-detachable-joint-system" name="ignition::gazebo::systems::DetachableJoint">
        <parent_link>link</parent_link>
        <child_model>large_crate_d</child_model>
        <child_link>link</child_link>
        <topic>/base_station/detach</topic>
-      </plugin>
-    </include-->
-   
+      </plugin-->
+    </include>
+
+    <include>
+      <name>small_dry_bag_d</name>
+      <pose relative_to="ground_platform">-4 -1.9 2.0 0 0 0.0</pose>
+      <uri>
+        https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Small Dry Bag
+      </uri>
+    </include>
+
+    <include>
+      <name>large_ammo_can_d</name>
+      <pose relative_to="ground_platform">-6 -1.9 2.0 0 0 0.0</pose>
+      <uri>
+        https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Large Ammo Can
+      </uri>
+    </include>
+
+    <include>
+      <name>large_grey_box_d</name>
+      <pose relative_to="ground_platform">-8 -1.9 2.0 0 0 0.0</pose>
+      <uri>
+        https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Large Grey Box
+      </uri>
+    </include>
+
+    <include>
+      <name>small_case_d</name>
+      <pose relative_to="ground_platform">-10 -1.9 2.0 0 0 0.0</pose>
+      <uri>
+        https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Small Case
+      </uri>
+    </include>
+
+    <include>
+      <name>small_dry_bag_handle_d</name>
+      <pose relative_to="ground_platform">-12 -1.9 2.0 0 0 0.0</pose>
+      <uri>
+        https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Small Dry Bag Handle
+      </uri>
+    </include>    
+
+    <include>
+      <name>large_dry_box_handles_d</name>
+      <pose relative_to="ground_platform">-14 -1.9 2.0 0 0 0.0</pose>
+      <uri>
+        https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Large Dry Box Handles
+      </uri>
+    </include>
+
+    <!-- TODO-->
+    <!-- Add rest of the three box with handles -->
+
+
+
+
+
+
+
     <!-- The MBZIRC competition logic plugin -->
     <!-- Stops simulation after X time, uneccessary for testing purposes-->
     <!--plugin filename="libGameLogicPlugin.so"
