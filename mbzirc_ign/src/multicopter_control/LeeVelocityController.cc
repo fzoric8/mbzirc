@@ -99,6 +99,9 @@ void LeeVelocityController::CalculateRotorVelocities(
   double thrust = -this->vehicleParameters.mass *
                   acceleration.dot(_frameData.pose.linear().col(2));
 
+  // DEBUG thrust
+  // std::cout << "thrust is: " << thrust << "\n"; 
+
   Eigen::Vector4d angularAccelerationThrust;
   angularAccelerationThrust.block<3, 1>(0, 0) = angularAcceleration;
   angularAccelerationThrust(3) = thrust;

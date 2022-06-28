@@ -371,6 +371,13 @@ end
       <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
+    <!-- filename="libignition-gazebo-odometry-publisher-system.so" -->
+    <plugin filename="libignition-gazebo6-odometry-publisher-system.so"
+      name="ignition::gazebo::systems::OdometryPublisher">
+      <odom_frame>model<%= $model_name%>/odom</odom_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+      <odom_topic><%= $model_name%>/odom</odom_topic>
+    </plugin>
     <!--Multicopter velocity controller-->
     <plugin
       filename="libMulticopterControl.so"
@@ -380,7 +387,7 @@ end
       <motorControlPubTopic>command/motor_speed</motorControlPubTopic>
       <enableSubTopic>velocity_controller/enable</enableSubTopic>
       <comLinkName>base_link</comLinkName>
-      <velocityGain>6 6 10</velocityGain>
+      <velocityGain>6 6 20</velocityGain>
       <attitudeGain><%= $attitude_gain %></attitudeGain>
       <angularRateGain>0.7 0.7 0.7</angularRateGain>
       <maximumLinearAcceleration>1 1 2</maximumLinearAcceleration>
@@ -392,8 +399,6 @@ end
       <!-- http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.490.7958&rep=rep1&type=pdf -->
       <linearVelocityNoiseStdDev>0.1105 0.1261 0.0947</linearVelocityNoiseStdDev>
       <angularVelocityNoiseMean>0 0 0</angularVelocityNoiseMean>
-      <!-- angularVelocityNoiseStdDev values based on ADIS16448's Rate Noise Density with a sample  -->
-      <!-- time of 0.004 ms. -->
       <angularVelocityNoiseStdDev>0.004 0.004 0.004</angularVelocityNoiseStdDev>
       <rotorConfiguration>
         <rotor>
@@ -434,6 +439,7 @@ end
         </rotor>
       </rotorConfiguration>
     </plugin>
+
     <!-- Battery plugin -->
     <plugin filename="libignition-gazebo-linearbatteryplugin-system.so"
       name="ignition::gazebo::systems::LinearBatteryPlugin">
