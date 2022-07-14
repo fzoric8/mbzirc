@@ -17,7 +17,7 @@ See Installation instructions for:
 
 * Ignition Fortress: https://ignitionrobotics.org/docs/fortress
 
-* ROS2 Galactic:  https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Binary.html
+* ROS2 Galactic:  https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html
 
 
 ### Installation from Source
@@ -98,6 +98,7 @@ To build a docker image of the simulator locally:
  Docker container:
 
     ```
+    cd docker
     bash run.bash mbzirc_sim
     ```
 

@@ -11,12 +11,14 @@ end
 
 $attitude_gain = '2 3 0.15'
 $motor_constant = '8.54858e-06'
-if $gripper_model == 'mbzirc_oberon7_gripper'
-  $attitude_gain = '10 10 0.15'
-  $motor_constant = '3.95e-05'
-elsif $gripper_model == 'mbzirc_suction_gripper'
-  $attitude_gain = '10 10 0.15'
-  $motor_constant = '2.52e-05'
+if defined?($gripper_model)
+  if $gripper_model.include?('mbzirc_oberon7_gripper')
+    $attitude_gain = '10 10 0.15'
+    $motor_constant = '3.95e-05'
+  elsif $gripper_model.include?('mbzirc_suction_gripper')
+    $attitude_gain = '10 10 0.15'
+    $motor_constant = '2.52e-05'
+  end
 end
 
 $slot0_payload = nil
@@ -346,7 +348,7 @@ end
       <!-- http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.490.7958&rep=rep1&type=pdf -->
       <linearVelocityNoiseStdDev>0.1105 0.1261 0.00947</linearVelocityNoiseStdDev>
       <angularVelocityNoiseMean>0 0 0</angularVelocityNoiseMean>
-      <!-- angularVelocityNoiseStdDev values based on ADIS16448's Rate Noise Density with a sample  -->
+      <!-- angularVelocityNoiseStdDev values based on ADIS16448s Rate Noise Density with a sample  -->
       <!-- time of 0.004 ms. -->
       <angularVelocityNoiseStdDev>0.004 0.004 0.004</angularVelocityNoiseStdDev>
       <rotorConfiguration>
