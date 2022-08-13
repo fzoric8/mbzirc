@@ -50,7 +50,8 @@ ARMS = [
 
 GRIPPERS = [
     'mbzirc_oberon7_gripper',
-    'mbzirc_suction_gripper'
+    'mbzirc_suction_gripper',
+    'mbzirc_suction_gripper_light',
 ]
 
 WAVEFIELD_SIZE = {'simple_demo': 1000, 'coast': 6000}
@@ -159,7 +160,7 @@ class Model:
         if self.has_valid_gripper():
             isAttachedToArm = self.is_USV()
             # gripper joint pos cmd
-            if self.gripper == 'mbzirc_oberon7_gripper':
+            if 'mbzirc_oberon7_gripper' in self.gripper:
                 # gripper_joint states
                 bridges.append(
                     mbzirc_ign.bridges.gripper_joint_states(world_name, self.model_name,
@@ -175,7 +176,7 @@ class Model:
                         mbzirc_ign.bridges.gripper_joint_force_torque(
                             self.model_name, joint, isAttachedToArm)
                     )
-            elif self.gripper == 'mbzirc_suction_gripper':
+            elif 'mbzirc_suction_gripper' in self.gripper:
                 bridges.append(
                     mbzirc_ign.bridges.gripper_suction_control(self.model_name, isAttachedToArm)
                 )
@@ -208,6 +209,7 @@ class Model:
         nodes = []
         payload_launches = []
         for (idx, k) in enumerate(sorted(payloads.keys())):
+            index = int(k[-1])
             p = payloads[k]
             if not p['sensor'] or p['sensor'] == 'None' or p['sensor'] == '':
                 continue
@@ -215,20 +217,20 @@ class Model:
             # check if it is a custom payload
             if self.is_custom_model(p['sensor']):
                 payload_launch = self.custom_payload_launch(world_name, self.model_name,
-                                                            p['sensor'], idx)
+                                                            p['sensor'], index)
                 if payload_launch is not None:
                     payload_launches.append(payload_launch)
 
             # if not custom payload, add our own bridges and nodes
             else:
                 model_prefix = ''
-                ros_slot_prefix = f'slot{idx}'
+                ros_slot_prefix = f'slot{index}'
                 if is_arm:
                     model_prefix = 'arm'
                     ros_slot_prefix = 'arm/' + ros_slot_prefix
                 bridges.extend(
                     mbzirc_ign.payload_bridges.payload_bridges(
-                        world_name, self.model_name, p['sensor'], idx, model_prefix))
+                        world_name, self.model_name, p['sensor'], index, model_prefix))
 
                 if p['sensor'] in mbzirc_ign.payload_bridges.camera_models():
                     nodes.append(Node(
